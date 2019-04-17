@@ -1,0 +1,20 @@
+<!-- Chat in 10 lines of JavaScript code using PubNub JavaScript V4 SDK (mini version)-->
+<p>Enter chat and press enter.</p>
+<input id="input" placeholder="Your Message Here"/>
+<p>Chat Output:<p>
+<div id="box"></div>
+
+<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.23.0.min.js"></script>
+<script>(function(){
+	var pubnub = new PubNub({publishKey : 'demo',subscribeKey : 'demo'}); // Your PubNub keys here. Get them from https://dashboard.pubnub.com.
+	var box = document.getElementById("box"), input = document.getElementById("input"), channel = 'chat';
+	pubnub.subscribe({channels: [channel]}); // Subscribe to a channel.
+	pubnub.addListener({message: function(m) {
+       	box.innerHTML = (''+m.message).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML; // Add message to page.
+    }});
+	input.addEventListener('keypress', function (e) {
+	    (e.keyCode || e.charCode) === 13 && pubnub.publish({ // Publish new message when enter is pressed. 
+	        channel : channel, message : input.value, x : (input.value='')
+	    });
+	});
+})();</script>
