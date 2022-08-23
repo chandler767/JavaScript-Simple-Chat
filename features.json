@@ -1,0 +1,7 @@
+{
+    "features": [
+       "Enter a message in the chat box",
+        "Hit enter to publish your message",
+        "Open demo in multiple windows to simulate multiple users"
+    ]
+}
