@@ -18,17 +18,30 @@
         <div id="box"></div>
 
         <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.23.0.min.js"></script>
+        <script type="text/javascript" src="https://darryncampbell-pubnub.github.io/pubnub-demo-utils/js/interactive-demo-interface/v2/demo-interface.js" defer></script>
         <script>(function(){
         	var pubnub = new PubNub({publishKey : 'demo',subscribeKey : 'demo'}); // Your PubNub keys here. Get them from https://dashboard.pubnub.com.
         	var box = document.getElementById("box"), input = document.getElementById("input"), channel = 'chat';
         	pubnub.subscribe({channels: [channel]}); // Subscribe to a channel.
         	pubnub.addListener({message: function(m) {
                	box.innerHTML = (''+m.message).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML; // Add message to page.
+                
+                //DEMO: used by the interactive demo
+                actionCompleated({
+                    action: 'Enter a message in the chat box',
+                    debug: false
+                })
             }});
         	input.addEventListener('keypress', function (e) {
         	    (e.keyCode || e.charCode) === 13 && pubnub.publish({ // Publish new message when enter is pressed. 
         	        channel : channel, message : input.value, x : (input.value='')
         	    });
+                //DEMO: used by the interactive demo
+                actionCompleated({
+                    action: 'Hit enter to publish your message',
+                    debug: false
+                })
+                
         	});
         })();</script>
    </body>
