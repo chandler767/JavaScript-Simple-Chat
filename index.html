@@ -41,6 +41,19 @@
                 })
                 
         	});
+
+            // attempt to add user id listener 
+
+            pubnub.addListener({
+                // Messages
+                message: function (m) {
+                    const channelName = m.channel; // Channel on which the message was published
+                    const channelGroup = m.subscription; // Channel group or wildcard subscription match (if exists)
+                    const pubTT = m.timetoken; // Publish timetoken
+                    const msg = m.message; // Message payload
+                    const publisher = m.publisher; // Message publisher
+                }
+            }); 
         })();</script>
    </body>
 </html>
