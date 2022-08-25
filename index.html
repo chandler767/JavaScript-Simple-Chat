@@ -23,7 +23,7 @@
         	pubnub.subscribe({channels: [channel]}); // Subscribe to a channel.
         	pubnub.addListener({message: function(m) {
                	box.innerHTML = (''+m.message).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML; // Add message to page.
-                
+                pubnub.getUUID()
                 //DEMO: used by the interactive demo
                 actionCompleted({
                     action: 'Hit enter to publish your message',
@@ -42,17 +42,7 @@
                 
         	});
 
-            // attempt to add user id listener 
-
-            pubnub.addListener({
-                // Messages
-                message: function (m) {
-                   
-                    const msg = m.message; // Message payload
-                    const publisher = m.publisher; // Message publisher
-                    pubnub.getUUID()
-                }
-            }); 
+           
             
         })();</script>
    </body>
