@@ -38,8 +38,15 @@
                     debug: false
                 })
                 }
-            });
 
+                
+            });
+            if(m.uuid != pubnub.getUUID()) {
+                    actionCompleted({
+                    action: 'Open demo in new tab to simulate multiple users',
+                    debug: false
+                })  
+                }
 
         	input.addEventListener('keypress', function (e) {
         	    (e.key.toLocaleLowerCase()) === "enter" && pubnub.publish({ // Publish new message when enter is pressed. 
