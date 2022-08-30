@@ -20,7 +20,7 @@
         <script>(function(){
         	var pubnub = new PubNub({publishKey : 'demo',subscribeKey : 'demo'}); // Your PubNub keys here. Get them from https://dashboard.pubnub.com.
         	var box = document.getElementById("box"), input = document.getElementById("input"), channel = 'chat';
-        	pubnub.subscribe({channels: [channel]}); // Subscribe to a channel.
+        	pubnub.subscribe({channels: [channel], withPresence: true }); // Subscribe to a channel.
         	pubnub.addListener({message: function(m) {
                	box.innerHTML = (''+m.message).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML; // Add message to page.
                 pubnub.getUUID()
@@ -29,7 +29,18 @@
                     action: 'Hit enter to publish your message',
                     debug: false
                 })
-            }});
+
+                
+            },
+            presence: function(m) {
+                actionCompleted({
+                    action: 'Open demo in new tab to simulate multiple users',
+                    debug: false
+                })
+                }
+            });
+
+
         	input.addEventListener('keypress', function (e) {
         	    (e.key.toLocaleLowerCase()) === "enter" && pubnub.publish({ // Publish new message when enter is pressed. 
         	        channel : channel, message : input.value, x : (input.value='')
