@@ -10,6 +10,7 @@
         <title>JavaScript Chat | PubNub</title>
     </head>
     <body>
+      
         <p>Enter chat and press enter.</p>
         <input id="input" placeholder="Your Message Here"/>
         <p>Chat Output:<p>
@@ -32,9 +33,10 @@
                         debug: false
                     })  
                 }}
-               	box.innerHTML = (''+m.message).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML; // Add message to page.
+     	box.innerHTML = (''+m.message).replace( /[<>]/g, '' ) + '<br>' + box.innerHTML; // Add message to page.
                 pubnub.getUUID()
             },
+           
             });
         	input.addEventListener('keypress', function (e) {
 
@@ -44,16 +46,16 @@
                     debug: false
                 })
         	    if (e.key.toLocaleLowerCase() === "enter") {
-
-
                     actionCompleted({
                     action: 'Hit enter to publish your message',
                     debug: false
                 })  
                      pubnub.publish({ // Publish new message when enter is pressed. 
-        	        channel : channel, message : input.value
+                        channel : channel, message : input.value, x : (input.value='')
         	    });
+                
         	}});
+
         })();</script>
    </body>
 </html>
