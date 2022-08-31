@@ -22,7 +22,7 @@
         	var box = document.getElementById("box"), input = document.getElementById("input"), channel = 'chat';
         	pubnub.subscribe({channels: [channel] }); // Subscribe to a channel.
         	pubnub.addListener({message: function(m) {
-                if(m.uuid != pubnub.getUUID()) { 
+                if(m.publisher!= pubnub.getUUID()) { 
                     actionCompleted({
                     action: 'Open demo in new tab to simulate multiple users',
                     debug: false
