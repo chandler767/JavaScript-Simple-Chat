@@ -1,3 +1,13 @@
+## info:
+
+This project is not maintained. See the latest version of this demo here: https://www.pubnub.com/demos/10-line-chat/
+
+
+
+
+
+
+
 # JavaScript Simple Chat
 
 This project is a demo showing how you can create a chat app in only 10 lines of code using PubNub's V4 JavaScript SDK. [View the Chat Code](https://github.com/chandler767/JavaScript-Simple-Chat/blob/master/chat.html).
